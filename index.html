@@ -114,10 +114,7 @@ function btn_nao() {
   contador++;
   
   if (contador >= 10) {
-    btn.textContent = 'SIM'; // Muda o texto para 'SIM'
-    btn.classList.remove('btn-nao'); // Remove a classe 'btn-nao'
-    btn.classList.add('btn-sim'); // Adiciona a classe 'btn-sim'
-    btn.onclick = btn_sim; // Muda a função de clique para btn_sim
+    btn.style.display = 'none';
 
     var elementoPergunta = document.querySelector('.pergunta');
     elementoPergunta.textContent = "Você, cara Azeitona, é a garota mais linda que eu conheço?";
