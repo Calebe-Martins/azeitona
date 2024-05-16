@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sim ou Não?</title>
+</head>
+
+<style>
+
+    html {
+        background-color: gray;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        height: 100vh; /* Use a altura desejada */
+    }
+
+    .centro {
+        /* background-color: blueviolet; */
+        text-align: center; /* Centraliza o conteúdo */
+        padding: 20px;
+    }
+
+    .pergunta {
+        font-size: 72px; /* Tamanho maior para a pergunta */
+        margin-bottom: 20px; /* Espaço abaixo da pergunta */
+        color: #333; /* Cor mais escura para melhor leitura */
+        font-weight: bold; /* Texto em negrito */
+    }
+
+    .resposta {
+        display: flex;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        width: 100%; /* Garante que a div ocupe a largura total */
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 32px;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s ease;
+        margin: 0 10px; /* Adiciona espaço entre os botões */
+    }
+
+    .btn-sim {
+        background-color: #4CAF50; /* Verde */
+        color: white;
+    }
+
+    .btn-sim:hover {
+        background-color: #45a049;
+    }
+
+    .btn-nao {
+        background-color: #f44336; /* Vermelho */
+        color: white;
+    }
+
+    .btn-nao:hover {
+        background-color: #d73833;
+    }
+
+    .btn-reset {
+        background-color: #555; /* Cor de fundo cinza */
+        color: white;
+        display: none; /* Inicialmente escondido */
+    }
+
+    .btn-reset:hover {
+        background-color: #333; /* Cor de fundo mais escura no hover */
+    }
+
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="centro">
+            <div class="pergunta">Eu sou lindo?</div>
+            
+            <div class="resposta">
+                <div class="sim">
+                    <button class="btn btn-sim" onclick="btn_sim()">SIM</button>
+                </div>
+                <div class="nao">
+                    <button class="btn btn-nao" onclick="btn_nao()">NÃO</button>
+                </div>
+                <div class="reset">
+                    <button class="btn btn-reset" onclick="btn_reset()">RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+var contador = 0;
+
+function btn_nao() {
+  var btn = document.querySelector('.btn-nao');
+  contador++;
+  
+  if (contador >= 10) {
+    btn.textContent = 'SIM'; // Muda o texto para 'SIM'
+    btn.classList.remove('btn-nao'); // Remove a classe 'btn-nao'
+    btn.classList.add('btn-sim'); // Adiciona a classe 'btn-sim'
+    btn.onclick = btn_sim; // Muda a função de clique para btn_sim
+
+    var elementoPergunta = document.querySelector('.pergunta');
+    elementoPergunta.textContent = "Você, cara Azeitona, é a garota mais linda que eu conheço?";
+  } else {
+    // Seu código existente para mover o botão
+    var x = Math.random() * (window.innerWidth - btn.offsetWidth);
+    var y = Math.random() * (window.innerHeight - btn.offsetHeight);
+
+    btn.style.position = 'absolute';
+    btn.style.left = x + 'px';
+    btn.style.top = y + 'px';
+  }
+}
+
+function btn_sim() {
+  var elementoPergunta = document.querySelector('.pergunta');
+
+  if (contador < 10) elementoPergunta.textContent = "Eu já sabia disso";
+  else elementoPergunta.textContent = "É claro que é!!";
+
+  var btns = document.querySelectorAll('.btn'); // Seleciona todos os botões
+  var btnReset = document.querySelector('.btn-reset');
+
+  // Esconde todos os botões com a classe 'btn'
+  btns.forEach(function(btn) {
+    btn.style.display = 'none';
+  });
+
+  // Exibe o botão Reset centralizado
+  btnReset.style.display = 'block';
+
+  document.body.style.backgroundImage = "url('https://assets.objkt.media/file/assets-003/Qmf3kmxRSeioP9ifiqagjJzjVhipoJfeZ6X51V9TMNQ4Jz/artifact')";
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundPosition = "center";
+}
+
+function btn_reset() {
+    // Recarrega a página
+  location.reload();
+}
+
+</script>
